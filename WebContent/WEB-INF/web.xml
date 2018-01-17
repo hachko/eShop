@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+	id="WebApp_ID" version="3.1">
+
+	<display-name>Ecommerce</display-name>
+
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+		<welcome-file>index.htm</welcome-file>
+		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>default.html</welcome-file>
+		<welcome-file>default.htm</welcome-file>
+		<welcome-file>default.jsp</welcome-file>
+	</welcome-file-list>
+
+	<!-- SERVLETS -->
+	<servlet>
+		<servlet-name>saisirClient</servlet-name>
+		<servlet-class>com.eCom.servlets.SaisieClientServlet</servlet-class>
+		<init-param>
+			<param-name>chemin</param-name>
+			<param-value>/Users/hhakkou/workspace/AppFiles/</param-value>
+		</init-param>
+		<multipart-config>
+			<location>C:/Users/hhakkou/workspace/AppTempFiles</location>
+			<max-file-size>1048576</max-file-size> <!--1 Mo -->
+			<max-request-size>5242880</max-request-size> <!--5 x 10 Mo -->
+			<file-size-threshold>1048576</file-size-threshold> <!--1 Mo -->
+		</multipart-config>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>saisirClient</servlet-name>
+		<url-pattern>/saisirClient</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>saisirCommande</servlet-name>
+		<servlet-class>com.eCom.servlets.SaisieCommandeServlet</servlet-class>
+		<init-param>
+			<param-name>chemin</param-name>
+			<param-value>/Users/hhakkou/workspace/AppFiles/</param-value>
+		</init-param>
+		<multipart-config>
+			<location>C:/Users/hhakkou/workspace/AppTempFiles</location>
+			<max-file-size>1048576</max-file-size> <!--1 Mo -->
+			<max-request-size>5242880</max-request-size> <!--5 x 10 Mo -->
+			<file-size-threshold>1048576</file-size-threshold> <!--1 Mo -->
+		</multipart-config>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>saisirCommande</servlet-name>
+		<url-pattern>/saisirCommande</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>ListerClients</servlet-name>
+		<servlet-class>com.eCom.servlets.ListeClientsServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>ListerClients</servlet-name>
+		<url-pattern>/listerClients</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>ListerCommandes</servlet-name>
+		<servlet-class>com.eCom.servlets.ListeCommandesServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>ListerCommandes</servlet-name>
+		<url-pattern>/listerCommandes</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>Connexion</servlet-name>
+		<servlet-class>com.eCom.servlets.ConnexionServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>Connexion</servlet-name>
+		<url-pattern>/connexion</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>Deconnexion</servlet-name>
+		<servlet-class>com.eCom.servlets.DeconnexionServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>Deconnexion</servlet-name>
+		<url-pattern>/deconnexion</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>SuppressionClient</servlet-name>
+		<servlet-class>com.eCom.servlets.SuppressionClientServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>SuppressionClient</servlet-name>
+		<url-pattern>/suppressionClient</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>SuppressionCommande</servlet-name>
+		<servlet-class>com.eCom.servlets.SuppressionCommandeServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>SuppressionCommande</servlet-name>
+		<url-pattern>/suppressionCommande</url-pattern>
+	</servlet-mapping>
+	
+	
+	<servlet>
+		<servlet-name>ImageClient</servlet-name>
+		<servlet-class>com.eCom.servlets.ImageClientServlet</servlet-class>
+		<init-param>
+			<param-name>chemin</param-name>
+			<param-value>/Users/hhakkou/workspace/AppFiles/</param-value>
+		</init-param>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>ImageClient</servlet-name>
+		<url-pattern>/fichiers/*</url-pattern>
+	</servlet-mapping>
+
+
+	<!-- FILTRES -->
+
+	<filter>
+		<filter-name>RestrictionFilter</filter-name>
+		<filter-class>com.eCom.filters.RestrictionFilter</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>RestrictionFilter</filter-name>
+		<url-pattern>/WEB-INF/userAccess/*</url-pattern>
+		<dispatcher>REQUEST</dispatcher>
+		<dispatcher>FORWARD</dispatcher>
+	</filter-mapping>
+
+	<filter>
+		<filter-name>Set Character Encoding</filter-name>
+		<filter-class>org.apache.catalina.filters.SetCharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+
+		<init-param>
+			<param-name>ignore</param-name>
+			<param-value>false</param-value>
+		</init-param>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>Set Character Encoding</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+</web-app>
